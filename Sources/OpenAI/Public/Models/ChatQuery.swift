@@ -408,7 +408,7 @@ public struct ChatQuery: Equatable, Codable, Streamable {
                 public init(
                     text: String? = nil,
                     imageURL: String? = nil,
-                    detail: ChatCompletionContentPartImageParam.ImageURL.Detail = .high
+                    detail: ChatCompletionContentPartImageParam.ImageURL.Detail = .auto
                 ) {
                     if let text {
                         self = .chatCompletionContentPartTextParam(
