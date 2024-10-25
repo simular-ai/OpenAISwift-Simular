@@ -34,6 +34,7 @@ final public class OpenAI: OpenAIProtocol {
             self.host = host
             self.port = port
             self.scheme = scheme
+            self.pathPrefix = pathPrefix
             self.timeoutInterval = timeoutInterval
         }
     }
