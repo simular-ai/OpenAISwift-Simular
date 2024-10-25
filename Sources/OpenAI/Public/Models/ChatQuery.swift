@@ -404,6 +404,21 @@ public struct ChatQuery: Equatable, Codable, Streamable {
                 public init(chatCompletionContentPartImageParam: ChatCompletionContentPartImageParam) {
                     self = .chatCompletionContentPartImageParam(chatCompletionContentPartImageParam)
                 }
+                
+                public init(text: String? = nil, imageURL: String? = nil,
+                            detail: Detail = .high) {
+                    if let text {
+                        self = .chatCompletionContentPartTextParam(
+                            ChatCompletionContentPartTextParam(text: text)
+                        )
+                    }
+                    if let imageURL {
+                        self = .chatCompletionContentPartImageParam(
+                            ChatCompletionContentPartImageParam(
+                                imageUrl: ImageURL(url: imageURL, detail: detail))
+                        )
+                    }
+                }
 
                 public func encode(to encoder: Encoder) throws {
                     var container = encoder.singleValueContainer()
