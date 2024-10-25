@@ -405,8 +405,11 @@ public struct ChatQuery: Equatable, Codable, Streamable {
                     self = .chatCompletionContentPartImageParam(chatCompletionContentPartImageParam)
                 }
                 
-                public init(text: String? = nil, imageURL: String? = nil,
-                            detail: Detail = .high) {
+                public init(
+                    text: String? = nil,
+                    imageURL: String? = nil,
+                    detail: ChatCompletionContentPartImageParam.ImageURL.Detail = .high
+                ) {
                     if let text {
                         self = .chatCompletionContentPartTextParam(
                             ChatCompletionContentPartTextParam(text: text)
@@ -415,7 +418,11 @@ public struct ChatQuery: Equatable, Codable, Streamable {
                     if let imageURL {
                         self = .chatCompletionContentPartImageParam(
                             ChatCompletionContentPartImageParam(
-                                imageUrl: ImageURL(url: imageURL, detail: detail))
+                                imageUrl: ChatCompletionContentPartImageParam.ImageURL(
+                                    url: imageURL,
+                                    detail: detail
+                                )
+                            )
                         )
                     }
                 }
