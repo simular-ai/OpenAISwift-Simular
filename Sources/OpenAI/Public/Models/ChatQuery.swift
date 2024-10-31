@@ -347,8 +347,19 @@ public struct ChatQuery: Equatable, Codable, Streamable {
                     switch self {
                     case .string(let string):
                         return string
-                    default:
-                        return nil
+                    case .vision(let visionContents):
+                        let result: [String] = visionContents.map { visionContent in
+                            switch visionContent {
+                            case .chatCompletionContentPartTextParam(let textParam):
+                                return textParam.text
+                            case .chatCompletionContentPartImageParam(let imageParam):
+                                let url = imageParam.imageUrl.url
+                                if url.count > 100 {
+                                    return String(url.prefix(100) + "...(truncated)")
+                                } else { return url }
+                            }
+                        }
+                        return result.joined(separator: "\n")
                     }
                 }}
 
